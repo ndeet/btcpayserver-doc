@@ -9,7 +9,11 @@ Jump right to the section you are interested in:
 
 ## Connecting a custodial Lightning Network wallet
 
+For setup instructions on connecting custodial Lightning wallets (Blink, Strike), please refer to the [custodial wallet section](./LightningNetwork.md#using-a-custodial-walletservice) in the Lightning Network overview.
+
 ## Using a swapping service
+
+For setup instructions on using swapping services like Boltz, please refer to the [swapping service section](./LightningNetwork.md#using-boltz-swapping-service) in the Lightning Network overview. For an automated setup experience, check out the [SamRock Protocol guide](./SamRockProtocol.md).
 
 ## Setting up your own Lightning Network node (fully self sovereign)
 
@@ -36,7 +40,7 @@ If you choose to run the internal Lightning Node in BTCPay Server, consider:
 4. The seed in step #3 can **only recover the on-chain funds**, although it is necessary for the off-chain operation.
 5. **Off-chain** funds locked in channels **cannot** be backed up using a single-seed. Read the documentation issued by your LN implementation of choice.
 6. **Off-chain** recovery mechanisms are under active research and development. Erasing your BTCPay Server or unsafe/unsecure operation of the computing environment (e.g Filesystem corruption, compromised keys) can lead to permanent **loss of funds**.
-7. Use our [backup script](./Docker/backup-restore) to regularly backup your BTCPay Server instance. This will help you recover your funds in case of a failure.
+7. Regularly backup your BTCPay Server instance. This will help you recover your funds in case of a failure.
 
 As the technology matures and develops, mechanisms for proper backup will be easier to implement in BTCPay Server.
 As of [v1.0.3.138](https://blog.btcpayserver.org/btcpay-lnd-migration/), LND is the only Lightning Network implementation that allows for [lightning seed backups with BTCPay Server](./FAQ/LightningNetwork.md#where-can-i-find-recovery-seed-backup-for-my-lightning-network-wallet-in-btcpay-server).
@@ -99,7 +103,7 @@ If you already use [AlbyHub](https://getalby.com/) you can use the LNDHub connec
 #### Control your LND using Ride The Lightning (RTL)
 
 The easiest way to use LND implementation with BTCPay Server is to use the **[Ride The Lightning](https://github.com/Ride-The-Lightning/RTL)** (RTL) service. A web user interface for the Lightning Network, RTL allows you to operate your node without leaving BTCPay Server, from your browser.
-\
+
 To initiate RTL in BTCPay Server, Go to Server Settings > Services > Ride The Lightning > See information.
 
 #### Control your LND using Zeus
@@ -109,7 +113,7 @@ For remote control of your LN node with your mobile phone, you can use [ZEUS](ht
 #### Control your LND via the command-line: lncli
 
 LND can be accessed via the command-line using the shell script `bitcoin-lncli.sh`.
-\
+
 If you're on Docker make sure you're in docker directory.
 
 ```bash
@@ -126,7 +130,7 @@ Run `./bitcoin-lncli.sh --help` to see a full list of commands or check the full
 #### Control your CLN using Ride The Lightning (RTL)
 
 The easiest way to use CLN implementation with BTCPay Server is to use the **[Ride The Lightning](https://github.com/Ride-The-Lightning/RTL)** (RTL) service. A web user interface for the Lightning Network, RTL allows you to operate your node without leaving BTCPay Server, from your browser.
-\
+
 To initiate RTL in BTCPay Server, Go to Server Settings > Services > Ride The Lightning > See information.
 
 #### Control your CLN using Zeus
@@ -136,7 +140,7 @@ For remote control of your LN node with your mobile phone, you can use [ZEUS](ht
 #### Control your CLN via the command-line: lightning-cli
 
 Similar to `lncli`, CLN can be accessed via the command-line using the shell script `bitcoin-lightning-cli.sh`.
-\
+
 If you're on Docker make sure you're in docker directory.
 
 ```bash
@@ -155,12 +159,10 @@ Before you start transacting using your new lightning node, consider backing up 
 1. **for LND**: storing a copy of the LND seed.
    Go to "Server Settings" > "Services" > "LND Seed Backup" and select "See information"
 2. **for CLN**: storing a copy of the [hsm_secret](https://lightning.readthedocs.io/BACKUP.html#hsm-secret)
-   \
+
    The CLN $LIGHTNINGDIR is located in `/var/lib/docker/volumes/generated_clightning_bitcoin_datadir/_data/bitcoin`
 
-Acknowledge the limitations of **off-chain** payment channel backups and associated risks.
-\
-See [backup FAQ](./Docker/backup-restore/#lightning-channel-backup) if you are running the BTCPay Server instance with Docker.
+Acknowledge the limitations of **off-chain** payment channel backups and associated risks. For more information on Lightning backups, see the [Lightning Network FAQ](./FAQ/LightningNetwork.md#where-can-i-find-recovery-seed-backup-for-my-lightning-network-wallet-in-btcpay-server).
 
 ### Manage liquidity via a Lightning Service Provider (LSP)
 
@@ -171,7 +173,7 @@ For information on managing liquidity through Lightning Service Providers, pleas
 #### Funding your on-chain wallet 
 
 Now that your lightning node is active, before opening lightning payment channels, you will need to fund the on-chain wallet.
-\
+
 The on-chain funding process can be performed in two ways:
 
 1. via the Ride The Lightning (RTL) UI interface
@@ -194,7 +196,5 @@ cd btcpayserver-docker
 ```
 
 Once your on-chain lightning node is funded, it's time to connect to other nodes on the network and open payment channels.
-\
-Check out [Payment channels](./LightningNetwork_PaymentChannels.md) for recommendations on opening payment channels, liquidity management and more.
 
-todo: move the payment channels page here or keep it linked like that
+Check out [Payment channels](./LightningNetwork_PaymentChannels.md) for recommendations on opening payment channels, liquidity management and more.
