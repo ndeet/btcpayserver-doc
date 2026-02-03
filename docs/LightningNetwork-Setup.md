@@ -9,11 +9,35 @@ Jump right to the section you are interested in:
 
 ## Connecting a custodial Lightning Network wallet
 
-For setup instructions on connecting custodial Lightning wallets (Blink, Strike), please refer to the [custodial wallet section](./LightningNetwork.md#using-a-custodial-walletservice) in the Lightning Network overview.
+Custodial Lightning wallets allow you to accept Lightning payments without running your own node. BTCPay Server supports integration with:
+
+### Blink
+
+Blink (formerly Galoy) provides a custodial Lightning wallet with auto-conversion to stablecoins/fiat.
+
+**Setup guide:** [Blink BTCPay Server Plugin](https://dev.blink.sv/examples/btcpayserver-plugin)
+
+### Strike
+
+Strike offers Lightning payments with optional conversion to fiat currencies.
+
+**Setup guide:** [Strike BTCPay Server Plugin](https://github.com/rockstardev/strike-btcpayserver-plugin)
+
+For more background on custodial options and their pros/cons, see the [custodial wallet section](./LightningNetwork.md#using-a-custodial-walletservice) in the Lightning Network overview.
 
 ## Using a swapping service
 
-For setup instructions on using swapping services like Boltz, please refer to the [swapping service section](./LightningNetwork.md#using-boltz-swapping-service) in the Lightning Network overview. For an automated setup experience, check out the [SamRock Protocol guide](./SamRockProtocol.md).
+Swapping services like Boltz allow you to receive Lightning payments that are automatically swapped to on-chain Bitcoin or Liquid Bitcoin (L-BTC).
+
+### Boltz
+
+Boltz uses atomic swaps to convert Lightning payments to Liquid BTC without taking custody of your funds.
+
+**Setup guide:** [Boltz BTCPay Plugin Documentation](https://btcpay.docs.boltz.exchange/)
+
+For a quick automated setup with Aqua Wallet, check out the [SamRock Protocol guide](./SamRockProtocol.md).
+
+For more background on swapping services and their pros/cons, see the [swapping service section](./LightningNetwork.md#using-boltz-swapping-service) in the Lightning Network overview.
 
 ## Setting up your own Lightning Network node (fully self sovereign)
 
@@ -40,7 +64,7 @@ If you choose to run the internal Lightning Node in BTCPay Server, consider:
 4. The seed in step #3 can **only recover the on-chain funds**, although it is necessary for the off-chain operation.
 5. **Off-chain** funds locked in channels **cannot** be backed up using a single-seed. Read the documentation issued by your LN implementation of choice.
 6. **Off-chain** recovery mechanisms are under active research and development. Erasing your BTCPay Server or unsafe/unsecure operation of the computing environment (e.g Filesystem corruption, compromised keys) can lead to permanent **loss of funds**.
-7. Regularly backup your BTCPay Server instance. This will help you recover your funds in case of a failure.
+7. Use our [backup script](./Docker/backup-restore) to regularly backup your BTCPay Server instance. This will help you recover your funds in case of a failure.
 
 As the technology matures and develops, mechanisms for proper backup will be easier to implement in BTCPay Server.
 As of [v1.0.3.138](https://blog.btcpayserver.org/btcpay-lnd-migration/), LND is the only Lightning Network implementation that allows for [lightning seed backups with BTCPay Server](./FAQ/LightningNetwork.md#where-can-i-find-recovery-seed-backup-for-my-lightning-network-wallet-in-btcpay-server).
@@ -162,7 +186,9 @@ Before you start transacting using your new lightning node, consider backing up 
 
    The CLN $LIGHTNINGDIR is located in `/var/lib/docker/volumes/generated_clightning_bitcoin_datadir/_data/bitcoin`
 
-Acknowledge the limitations of **off-chain** payment channel backups and associated risks. For more information on Lightning backups, see the [Lightning Network FAQ](./FAQ/LightningNetwork.md#where-can-i-find-recovery-seed-backup-for-my-lightning-network-wallet-in-btcpay-server).
+Acknowledge the limitations of **off-chain** payment channel backups and associated risks. 
+
+See the [backup FAQ](./Docker/backup-restore/#lightning-channel-backup) if you are running the BTCPay Server instance with Docker, and the [Lightning Network FAQ](./FAQ/LightningNetwork.md#where-can-i-find-recovery-seed-backup-for-my-lightning-network-wallet-in-btcpay-server) for information on seed backups.
 
 ### Manage liquidity via a Lightning Service Provider (LSP)
 
