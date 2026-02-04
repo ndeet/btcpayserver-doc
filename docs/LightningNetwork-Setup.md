@@ -296,7 +296,7 @@ Lightning liquidity management is an ongoing process. As a merchant accepting pa
 1. **Submarine swaps**: Use services like Boltz to swap Lightning funds back to on-chain BTC, freeing up inbound capacity
 2. **Loop Out**: If using LND, use [Lightning Loop](https://lightning.engineering/loop/) to move funds from Lightning to on-chain
 3. **Spending**: Use your Lightning balance to pay invoices, which naturally creates more inbound capacity
-4. **Channel rebalancing**: Use RTL or command-line tools to rebalance funds between channels. For automated rebalancing, Lightning Loop is supported in RTL, or you can use [Thunderhub](https://docs.btcpayserver.org/FAQ/LightningNetwork/#how-to-install-thunderhub) which also provides automated rebalancing features
+4. **Channel rebalancing**: Use RTL or command-line tools to rebalance funds between channels. For automated rebalancing, Lightning Loop is supported in RTL
 5. **LSP services**: Use automated liquidity services that handle channel management for you (see [LSP section](./LightningNetwork.md#using-liquidity-service-providers-lsps))
 
 The [LSPS plugin](https://plugin-builder.btcpayserver.org/public/plugins/get-lightning-channel) can help automate some of these processes directly from BTCPay Server.
